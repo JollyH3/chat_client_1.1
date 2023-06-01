@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox Text="testo" Background="LightGreen" Margin="322,368,198,25" RenderTransformOrigin="0.51,0.579"/>
+        <ListView Margin="272,64,148,63"/>
+        <TextBox Text="Cerca persona" TextAlignment="Center" Margin="10,10,545,377"/>
+        <ListView Margin="10,64,535,25"/>
     </Grid>
 </Window>

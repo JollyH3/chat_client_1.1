@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace chat_client_1._1
 {
-    /// <summary>
-    /// Logica di interazione per MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
         public MainWindow()
