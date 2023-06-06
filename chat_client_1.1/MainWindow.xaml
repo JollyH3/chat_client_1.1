@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox Text="testo" Background="LightGreen" Margin="322,368,198,25" RenderTransformOrigin="0.51,0.579"/>
+        <TextBox Text="testo" x:Name="TextBox" Background="LightGreen" Margin="322,368,198,25" RenderTransformOrigin="0.51,0.579"/>
         <ListView Margin="272,64,148,63"/>
-        <TextBox Text="Cerca persona" TextAlignment="Center" Margin="10,10,545,377"/>
-        <ListView Margin="10,64,535,25"/>
+        <TextBox x:Name="SearchTextBox" Text="" TextChanged="SearchTextBox_TextChanged" TextAlignment="Center" Margin="10,10,545,377"/>
+        <ListView x:Name="UserListView" Margin="10,64,535,25" SelectionChanged="UserListView_SelectionChanged"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="602,371,0,0" VerticalAlignment="Top" Height="38" Width="50" Click="Button_Click"/>
     </Grid>
 </Window>
