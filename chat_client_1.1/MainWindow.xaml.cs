@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json;
 using System.ComponentModel;
+using System.Windows.Documents;
 
 namespace chat_client_1._1
 {
@@ -44,6 +45,46 @@ namespace chat_client_1._1
             CreateMessageTable();
 
             GetMyMessagesFromServer();
+
+            stampa();
+
+        }
+
+        private void stampa()
+        {
+           string connectionString = "Data Source=chat.db;Version=3;";
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectQuery = "SELECT * FROM messages;";
+
+                using (var command = new SQLiteCommand(selectQuery, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            PrintDialog printDialog = new PrintDialog();
+                            if (printDialog.ShowDialog() == true)
+                            {
+                                FlowDocument flowDocument = new FlowDocument();
+
+                                while (reader.Read())
+                                {
+                                    string messageText = reader.GetString(1); // Assuming the message text is stored in the second column (index 1)
+
+                                    Paragraph paragraph = new Paragraph(new Run(messageText));
+                                    flowDocument.Blocks.Add(paragraph);
+                                }
+
+                                IDocumentPaginatorSource paginatorSource = flowDocument;
+                                printDialog.PrintDocument(paginatorSource.DocumentPaginator, "Stampa Messaggi");
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -192,7 +233,10 @@ namespace chat_client_1._1
         {
             if (UserListView.SelectedItem is User selectedUser)
             {
+                List<Message>Messages = new List<Message>();
+
                 selectedUserId = selectedUser.UserId;
+
                 Messages = GetMessagesFromDatabase(selectedUserId);
                 
 
