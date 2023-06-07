@@ -30,7 +30,7 @@ namespace chat_client_1._1
                 }
             }
         }
-
+        
         public void InsertUser(string name, string surname)
         {
             using (var connection = new SQLiteConnection(connectionString))
